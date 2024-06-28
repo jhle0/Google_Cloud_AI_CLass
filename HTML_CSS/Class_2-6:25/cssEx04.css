@@ -1,0 +1,15 @@
+/* CSS 문법 적용 */
+
+body {
+  font-size: 70%;
+}
+
+div {
+  font-size: 2em;         /* em : 부모 크기의 배수 */
+
+  border: 5px dotted black;
+}
+
+.p1 {
+  font-size: 2em;
+}

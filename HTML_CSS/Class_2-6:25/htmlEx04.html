@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>데이터 전송</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+</head>
+<body
+  <!-- 
+  form tag : 제출 기능
+
+    - method : 'get'
+             : 데이터 전달 시 get 방식 사용
+             : 브라우저 주소창에 데이터를 넣어서 전달 (255자 까지만 가능)
+
+    - method : 'post'
+             : 데이터 전달 시 post 방식 사용
+             : 주소창에 데이터가 노출되지 않는 방식
+             : 소스코드 안쪽에 넣어서 전달
+
+    - default : get 방식 -->
+
+  <!-- table>(tr>th{ID}+td>input:text)+(tr>th{PW}+td>input:text) -->
+
+  <!-- <form action="#" method="post">
+    <table border="1" cellspacing="0" cellpaddig="0" width="300px">
+      <tr>
+        <th>ID</th>
+        <td><input type="text" name="id" id=""></td>
+      </tr>
+      <tr>
+        <th>PW</th>
+        <td><input type="text" name="pw" id=""></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="로그인">
+          <input type="reset" value="다시입력">
+          
+        </td>
+      </tr>
+    </table
+   </form> -->
+
+
+  <hr>
+
+  <h2>네이버 검색 기능 빌려오기</h2>
+  <form action="https://search.naver.com/search.naver">
+    <input type="hidden" name="where" value="nexearch">
+    <input type="hidden" id="sm" name="sm" value="top_hty">
+    <input type="hidden" id="fbm" name="fbm" value="0">
+    <input type="hidden" id="ie" name="ie" value="utf8">
+    <table>
+      <tr>
+        <td><input type="text" name="query" id=""></td>
+        <td><input type="submit" value="검색"></tr></td>    
+
+    </table>
+
+  </form>
+
+
+
+  
+</body>
+
+
+  
+
+</html>

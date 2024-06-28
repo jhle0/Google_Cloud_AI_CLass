@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="cssEx06.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+</head>
+<body>
+  <h2>구조적 Pseudo Class</h2>
+  <p>
+    여러 개가 나열 된 요소 중에서 특정 부분에만 다른 스타일을 적용
+  </p>
+
+  <!-- table>(tr>th+td)*6 -->
+  <table>
+    <tr>
+      <th>:nth-child(n)</th>
+      <td>항목 중에서 n번째 자식을 선택 => 수식으로도 가능 (ex. 3n-1)</td>
+    </tr>
+    <tr>
+      <th>:nth-last-child(n)</th>
+      <td>끝에서부터 n번째 자식을 선택</td>
+    </tr>
+    <tr>
+      <th>:nth-of-child(n)</th>
+      <td>유형이 같은 n번째 자식을 선택</td>
+    </tr>
+    <tr>
+      <th>:nth-last-of-child(n)</th>
+      <td>끝에서부터 유형이 같은 n번째 자식을 선택</td>
+    </tr>
+    <tr>
+      <th>:nth-child(odd)</th>
+      <td>홀수번째 유형을 선택</td>
+    </tr>
+    <tr>
+      <th>:nth-child(even)</th>
+      <td>짝수번째 유형을 선택</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>CSS2부터 있던 구조적 Pseudo class</h3>
+  <!-- table>(tr>th+td)*7 -->
+  <table>
+    <tr>
+      <th>:root</th>
+      <td>문서의 root 선택 ex) 현재 HTML 문서에서 root는? <xmp><html></xmp> </td>
+    </tr>
+    <tr>
+      <th>:last-child</th>
+      <td>마지막 자식</td>
+    </tr>
+    <tr>
+      <th>:first-of-type</th>
+      <td>해당 유형의 첫번째 항목</td>
+    </tr>
+    <tr>
+      <th>:last-of-type</th>
+      <td>해당 유형의 마지막 항목</td>
+    </tr>
+    <tr>
+      <th>:only-child</th>
+      <td>컨테이너 항목의 유일한 자식</td>
+    </tr>
+    <tr>
+      <th>:only-of-type</th>
+      <td>해당 유형을 가진 컨테이너 항목의 유일한 자식</td>
+    </tr>
+    <tr>
+      <th>:empty</th>
+      <td>빈 항목을 선택 (주의! 어떤 텍스트도 들어있으면 안됨)</td>
+    </tr>
+  </table>
+                        
+<hr>
+
+  <ul>
+    <li>A</li>
+    <li>B</li>
+    <li>C</li>
+    <li>D</li>
+    <li>E</li>
+    <li>F</li>
+    <li>G</li>
+    <li>H</li>
+    <li>I</li>
+  </ul>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>CSS 선택자</title>
+  <style type="text/css">
+
+    /* 모든 요소들에 CSS 효과를 주고 싶다면? : * {} */
+    * {
+      font-size: 30px;
+    }
+
+    /* 요소 선택자를 이용해서도 모든 요소들에게 동일한 효과 부여 가능 */
+    body {
+      font-family: "나눔고딕", Dotum, sans-serif;
+    }
+    
+
+  /* id를 선택자로 이용하여 호출 : #아이디명 {} */
+    #aaa {color : pink;}
+
+
+    /* class를 선택자로 이용하여 호출 : .클래스명 {}  */
+    .bbb {color : #0054FF;}
+
+    
+  /* h1 요소의 글자색은 빨간색,
+  p 요소의 글자색은 녹색 */
+
+    h2 { color : red;}
+    p {color : green;}
+    
+  </style>
+ 
+</head>
+<body>
+  <h2>Type 선택자</h2>
+
+  <!-- <시작태그> 내용 </종료태그>  => 이 전체를 elements(요소)라 정의 -->
+<!-- 
+  첫번째 p 태그만 핑크색으로 하고 싶다면?
+   - 각각의 요소를 구분하는 속성 : id
+   - 주의! id를 지정할 때는 중복되지 않아야 한다.
+     => 브라우저가 알아서 대충 선택해 주기 때문.
+   -->
+  <p id="aaa">HTML 모든 요소는 전부 선택자로 사용 가능</p>
+  
+<!-- 
+  동시에 여러 요소들을 묶어서 한 번에 효과를 주고 싶다면?
+   - class 속성 (주의! 같은 그룹이면 같은 이름)
+   -->
+  
+  <p>HTML 모든 요소는 전부 선택자로 사용 가능</p>
+  <p class="bbb">HTML 모든 요소는 전부 선택자로 사용 가능</p>
+  <p>HTML 모든 요소는 전부 선택자로 사용 가능</p>
+  <p class="bbb">HTML 모든 요소는 전부 선택자로 사용 가능</p>
+  <p>HTML 모든 요소는 전부 선택자로 사용 가능</p>
+  <p class="ccc">HTML 모든 요소는 전부 선택자로 사용 가능</p>
+  <p class="ccc">HTML 모든 요소는 전부 선택자로 사용 가능</p>
+
+</body>
+</html>
