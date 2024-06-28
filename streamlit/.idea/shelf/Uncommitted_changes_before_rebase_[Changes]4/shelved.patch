@@ -1,0 +1,443 @@
+Index: source/input_widgets.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/input_widgets.py b/source/input_widgets.py
+new file mode 100644
+--- /dev/null	(date 1719536231653)
++++ b/source/input_widgets.py	(date 1719536231653)
+@@ -0,0 +1,87 @@
++import streamlit as st
++
++st.title("Input widgets")
++
++st.header("Text Input")
++st.divider()
++
++st.code('st.text_input(label, value="", max_chars=None, type="default")')
++
++# value : 텍스트 입력 창에 초기에 보이는 문자열
++# max_chars : 최대로 입력할 수 있는 문자의 개수
++# type : 입력 텍스트의 형식 (password - 문자가 *으로 나옴)
++
++# return 값 : 사용자가 입력한 문자열
++
++user_ID = st.text_input('ID : ', placeholder="This is id field", max_chars=20)
++user_password = st.text_input("Password: ", placeholder="This is password", type='password')
++
++if user_ID == 'hong':
++    if user_password == '1234':
++        st.write('Login complete')
++    else:
++        st.write('<h4>Wrong password</h4>', unsafe_allow_html=True)
++else:
++    st.write('Wrong ID')
++
++
++
++st.header("Text Area")
++st.divider()
++
++st.code('st.text_area(label, value, height, mar_chars, on_change, disalbled, label_visibility)')
++
++txt = st.text_area("This is text area", placeholder="최초 표시되는 값")
++
++st.write("현재 area 문자 개수: ", len(txt))
++
++
++
++
++st.header("Chat Input")
++st.divider()
++
++st.code('st.chat_input(placeholder, max_chars, disabled, on_submit')
++
++prompt = st.chat_input("안녕하세요 무엇을 도와드릴 까요")
++
++
++
++
++import streamlit as st
++import pandas as pd
++import numpy as np
++import pydeck as pdk
++
++chart_data = pd.DataFrame(
++    np.random.randn(1000, 2) / [50, 50] + [33.459574223653, 126.56120234738],
++    columns=['lat', 'lon'])
++
++st.pydeck_chart(pdk.Deck(
++    map_style=None,
++    initial_view_state=pdk.ViewState(
++        latitude=37.76,
++        longitude=-122.4,
++        zoom=11,
++        pitch=50,
++    ),
++    layers=[
++        pdk.Layer(
++            'HexagonLayer',
++            data=chart_data,
++            get_position=[33.459574223653, 126.56120234738],
++            radius=200,
++            elevation_scale=4,
++            elevation_range=[0, 10000],
++            pickable=True,
++            extruded=True,
++        ),
++        pdk.Layer(
++            'ScatterplotLayer',
++            data=chart_data,
++            get_position='[lon, lat]',
++            get_color='[200, 30, 0, 160]',
++            get_radius=200,
++        ),
++    ],
++))
+Index: source/sil2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/sil2.py b/source/sil2.py
+new file mode 100644
+--- /dev/null	(date 1719536231645)
++++ b/source/sil2.py	(date 1719536231645)
+@@ -0,0 +1,25 @@
++import streamlit as st
++import pandas as pd
++import matplotlib.pyplot as plt
++
++st.title("데이터 시각화 애플리케이션")
++st.divider()
++
++uploaded_file = st.file_uploader("CSV 파일을 업로드하세요", type="csv")
++
++if uploaded_file:
++    df = pd.read_csv(uploaded_file)
++    st.write("업로드된 데이터:")
++    st.dataframe(df)
++
++    column = st.selectbox("데이터 프레임으로 보고싶은 열을 선택하세요", df.columns, index=None,  placeholder="열 선택")
++
++    if column:
++        fig, ax = plt.subplots()
++        ax.hist(df[column], bins=20, edgecolor='k')
++        ax.set_title(f'{column} 히스토그램')
++        ax.set_xlabel(column)
++        ax.set_ylabel('Frequency')
++        st.pyplot(fig)
++else:
++    st.write("CSV 파일을 업로드하세요.")
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"1477c316-ad47-4484-86d7-38e6257134f7\" name=\"Changes\" comment=\"streamlit-text요소\">\n      <change afterPath=\"$PROJECT_DIR$/source/download_button_widget.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/source/image/example1.mp4\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/image/example1.mp4\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/source/image/images.jpeg\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/image/images.jpeg\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/source/input_widget.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/source/input_widget.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/streamlit.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/streamlit.iml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <branch-grouping />\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\n      <list>\n        <option value=\"jhle0 &lt;dumiso04@gmail.com&gt;\" />\n      </list>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\n  \"lastFilter\": {\n    \"state\": \"OPEN\",\n    \"assignee\": \"jhle0\"\n  }\n}]]></component>\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\n  \"selectedUrlAndAccountId\": {\n    \"url\": \"https://github.com/jhle0/Google_AI_Class.git\",\n    \"accountId\": \"4c595839-527c-430b-8b9d-784efa49bb48\"\n  }\n}]]></component>\n  <component name=\"ProjectColorInfo\"><![CDATA[{\n  \"customColor\": \"\",\n  \"associatedIndex\": 0\n}]]></component>\n  <component name=\"ProjectId\" id=\"2iRRCLSB9JOwhgdcfbnCpgDwr0G\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"dart.analysis.tool.window.visible\": \"false\",\n    \"git-widget-placeholder\": \"main\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"project.structure.last.edited\": \"Modules\",\n    \"project.structure.proportion\": \"0.15\",\n    \"project.structure.side.proportion\": \"0.21609196\",\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n      <recent name=\"$PROJECT_DIR$/source\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62\" />\n        <option value=\"bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"1477c316-ad47-4484-86d7-38e6257134f7\" name=\"Changes\" comment=\"\" />\n      <created>1719451276577</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1719451276577</updated>\n      <workItem from=\"1719451277916\" duration=\"4066000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"streamlit-text요소\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1719452939252</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1719452939252</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"streamlit-text요소\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1719453384413</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1719453384413</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"3\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"HEAD\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"streamlit-text요소\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"streamlit-text요소\" />\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision fba2bec1ee08a25b49365c035f415d1afed0c8c3)
++++ b/.idea/workspace.xml	(date 1719536902383)
+@@ -4,13 +4,17 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="1477c316-ad47-4484-86d7-38e6257134f7" name="Changes" comment="streamlit-text요소">
+-      <change afterPath="$PROJECT_DIR$/source/download_button_widget.py" afterDir="false" />
++    <list default="true" id="1477c316-ad47-4484-86d7-38e6257134f7" name="Changes" comment="streamlit-widget">
++      <change afterPath="$PROJECT_DIR$/source/dataframe_edit.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/source/input_widgets.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/source/selection_widgets.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/source/sil1.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/source/sil2.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/source/image/example1.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/image/example1.mp4" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/source/image/images.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/image/images.jpeg" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/source/input_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/input_widget.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/streamlit.iml" beforeDir="false" afterPath="$PROJECT_DIR$/streamlit.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/source/image/example1.mp4" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/source/image/images.jpeg" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/source/input_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/basic_button_widget.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -33,46 +37,46 @@
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "jhle0"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;jhle0&quot;
+   }
+-}]]></component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/jhle0/Google_AI_Class.git",
+-    "accountId": "4c595839-527c-430b-8b9d-784efa49bb48"
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/jhle0/Google_AI_Class.git&quot;,
++    &quot;accountId&quot;: &quot;4c595839-527c-430b-8b9d-784efa49bb48&quot;
+   }
+-}]]></component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "customColor": "",
+-  "associatedIndex": 0
+-}]]></component>
++}</component>
++  <component name="ProjectColorInfo">{
++  &quot;customColor&quot;: &quot;&quot;,
++  &quot;associatedIndex&quot;: 0
++}</component>
+   <component name="ProjectId" id="2iRRCLSB9JOwhgdcfbnCpgDwr0G" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "dart.analysis.tool.window.visible": "false",
+-    "git-widget-placeholder": "main",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.21609196",
+-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;m&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.21609196&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$" />
+@@ -96,6 +100,8 @@
+       <option name="presentableId" value="Default" />
+       <updated>1719451276577</updated>
+       <workItem from="1719451277916" duration="4066000" />
++      <workItem from="1719471369262" duration="5721000" />
++      <workItem from="1719536135068" duration="767000" />
+     </task>
+     <task id="LOCAL-00001" summary="streamlit-text요소">
+       <option name="closed" value="true" />
+@@ -120,6 +126,21 @@
+     <option name="version" value="3" />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
++    <option name="RECENT_FILTERS">
++      <map>
++        <entry key="Branch">
++          <value>
++            <list>
++              <RecentGroup>
++                <option name="FILTER_VALUES">
++                  <option value="origin/main" />
++                </option>
++              </RecentGroup>
++            </list>
++          </value>
++        </entry>
++      </map>
++    </option>
+     <option name="TAB_STATES">
+       <map>
+         <entry key="MAIN">
+@@ -130,7 +151,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="HEAD" />
++                        <option value="origin/main" />
+                       </list>
+                     </value>
+                   </entry>
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Google_AI_Class\n구글 클라우드 인재양성 프로그램 (제주 - 6/24 ~ 8/30)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision fba2bec1ee08a25b49365c035f415d1afed0c8c3)
++++ b/README.md	(date 1719536231649)
+@@ -1,2 +1,2 @@
+ # Google_AI_Class
+-구글 클라우드 인재양성 프로그램 (제주 - 6/24 ~ 8/30)
++구글 클라우드 인재양성 프로그램 (제주 - 6/24 ~ 8/30)
+\ No newline at end of file
+Index: source/selection_widgets.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/selection_widgets.py b/source/selection_widgets.py
+new file mode 100644
+--- /dev/null	(date 1719536231629)
++++ b/source/selection_widgets.py	(date 1719536231629)
+@@ -0,0 +1,73 @@
++import streamlit as st
++
++
++st.title("Check_Box")
++
++st.code('st.checkbox(label, [, value=False])')
++
++st.markdown('''
++<!--
++    label : 체크박스 옆에 표시될 문잘
++    value : 체크박스 초기 상태 (기본값 False)
++    return 값 T/F 
++--> 
++''', unsafe_allow_html=True)
++
++
++
++checked1 = st.checkbox('check-box1')
++st.write('체크 박스 상태: ', checked1)
++
++checked2 = st.checkbox('check-box2', value=True)
++st.write('체크 박스 상태: ', checked2)
++
++
++st.markdown('---')
++
++
++st.title("Radio Button")
++
++st.code('st.radio(label, options [index=0, horizontal=False])')
++
++st.markdown('''
++<!--
++label : 라디오 버튼에 표시할 문자열
++options : 선택항목 라벨을 담고 있는 리스트 또는 튜플
++          선택항목 라벨 갯수만큼 라디오 버튼 선택항목이 생성
++index : 초기 선택 항목 지정, (default = 0)
++horizontal : 선택 항목 라벨 배치 순서, True: 가로, False : 세로방향, default: False
++
++return 값-> 선택한 항목의 라벨값
++-->
++''', unsafe_allow_html=True)
++
++
++radio1_options = ['10', '20', '30', '40']
++radio1_selected = st.radio('(5 * 5) + 5 는 얼마인가요?', radio1_options)
++st.write("선택한 답: ", radio1_selected)
++
++
++radio2_options = ['10', '20', '30', '40']
++radio2_selected = st.radio('(5 * 5) + 5 는 얼마인가요?', radio2_options, horizontal=True)
++st.write("선택한 답: ", radio2_selected)
++
++
++st.divider()
++st.title("Select Box")
++
++st.code('st.selectbox(label, options [, index=])')
++
++selectbox1_options = ['한식', '중식', '일식', '양식', '분식']
++your_option1 = st.selectbox("내일 뭐 먹지?", selectbox1_options)
++st.write('여러분의 선택', your_option1)
++
++
++# selectbox2_options = ['-'*50,'한식', '중식', '일식', '양식', '분식']
++# your_option2 = st.selectbox("내일 뭐 먹지?", selectbox2_options, )
++# st.write('여러분의 선택', your_option2)
++
++
++selectbox2_options = ['한식', '중식', '일식', '양식', '분식']
++your_option2 = st.selectbox("내일 뭐 먹지?", selectbox2_options, index=None, placeholder="Select contact method...")
++st.write('여러분의 선택:', your_option2)
++
+Index: source/sil1.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/sil1.py b/source/sil1.py
+new file mode 100644
+--- /dev/null	(date 1719536231625)
++++ b/source/sil1.py	(date 1719536231625)
+@@ -0,0 +1,19 @@
++import streamlit as st
++
++st.title("실습 1")
++st.divider()
++
++user_name = st.text_input('name : ', placeholder="이름을 입력하세요")
++user_age = st.text_input('age : ', placeholder="나이를 입력하세요")
++sex_options = ['남', '여']
++user_sex = st.radio('성별을 선택하세요', sex_options)
++
++if user_name and user_age and user_sex:
++        age = int(user_age)
++        st.write(f"환영합니다, {user_name}님!")
++        if user_sex == '남':
++            st.write(f"당신은 {age}살 남성이시네요.")
++        else:
++            st.write(f"당신은 {age}살 여성이시네요.")
++else:
++    st.write("모든 정보를 입력해주세요.")
+Index: source/dataframe_edit.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/dataframe_edit.py b/source/dataframe_edit.py
+new file mode 100644
+--- /dev/null	(date 1719536231620)
++++ b/source/dataframe_edit.py	(date 1719536231620)
+@@ -0,0 +1,18 @@
++import streamlit as st
++from PIL import Image
++import matplotlib.pyplot as plt
++import pandas as pd
++import numpy as np
++
++st.subheader("DataFrame ex")
++df = pd.DataFrame(
++    [
++        {'명령어': 'st.selectbox', '평점': 4, 'is_widget': True},
++        {'명령어': 'st.ballons', '평점': 5, 'is_widget': False},
++        {'명령어': 'st.time_input', '평점': 3, 'is_widget': False},
++    ]
++)
++
++st.data_editor(df, height=200, num_rows='fixed')
++
++st.balloons()
+\ No newline at end of file
+diff --git a/source/input_widget.py b/source/basic_button_widget.py
+rename from source/input_widget.py
+rename to source/basic_button_widget.py

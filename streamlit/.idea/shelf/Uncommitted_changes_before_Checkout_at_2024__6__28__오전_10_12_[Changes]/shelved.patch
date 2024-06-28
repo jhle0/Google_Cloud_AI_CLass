@@ -1,0 +1,13 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Google_AI_Class\n구글 클라우드 인재양성 프로그램 (제주 - 6/24 ~ 8/30)\n
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	
++++ b/README.md	
+@@ -1,2 +1,2 @@
+ # Google_AI_Class
+-구글 클라우드 인재양성 프로그램 (제주 - 6/24 ~ 8/30)
++구글 클라우드 인재양성 프로그램 (제주 - 6/24 ~ 8/30)
+\ No newline at end of file
