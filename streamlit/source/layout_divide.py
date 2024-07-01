@@ -10,8 +10,10 @@ from PIL import Image
 # 반환값 : 각 세로단에 내용을 표시할 수 있는 컨테이너 객체 리스트
 
 
-st.subheader('1) 2개의 컬럼으로 분할 :blue[-너비는 같게]')
-[col1, col2] = st.columns(2)
-with col1:
-    st.markdown('#### 유튜브 비디오 1')
+def run():
+
+    st.subheader('1) 2개의 컬럼으로 분할 :blue[-너비는 같게]')
+    [col1, col2] = st.columns(2)
+    with col1:
+        st.markdown('#### 유튜브 비디오 1')
 

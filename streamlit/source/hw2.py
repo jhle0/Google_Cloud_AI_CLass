@@ -60,3 +60,5 @@ st.write(f"현재 입력된 나이: {st.session_state['age']}")
 
 
 
+
+
