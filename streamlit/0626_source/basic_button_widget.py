@@ -11,6 +11,8 @@ if clicked:
 else :
     st.write('버튼 1을 클릭하지 않았습니다')
 
+
+
 clicked = st.button('버튼 2')
 st.write('버튼 2 클릭 상태 : ', clicked)
 

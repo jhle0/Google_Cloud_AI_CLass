@@ -12,53 +12,55 @@
 
 import streamlit as st
 
-st.title('세션과 콜백')
+def run():
 
-st.header('Session State', divider='rainbow')
-#세션 상태 초기화 : 기본 구조 key - value (숫자, 문자, 논리, 리스트)
-if 'count' not in st.session_state:
-    st.session_state['count'] = 0
+    st.title('세션과 콜백')
 
-if 'registered' not in st.session_state:
-    st.session_state['registered'] = []
+    st.header('Session State', divider='rainbow')
+    #세션 상태 초기화 : 기본 구조 key - value (숫자, 문자, 논리, 리스트)
+    if 'count' not in st.session_state:
+        st.session_state['count'] = 0
 
-# 텍스트 입력 위젯
-user_input = st.text_input('이름', value='이름을 입력하세요', key='name')
+    if 'registered' not in st.session_state:
+        st.session_state['registered'] = []
 
-# 버튼 입력 위젯
-clicked = st.button('등록')
+    # 텍스트 입력 위젯
+    user_input = st.text_input('이름', value='이름을 입력하세요', key='name')
 
-if clicked:
-    st.session_state['count'] = st.session_state['count'] + 1
-    st.write('버튼 클릭 : ', st.session_state['count'])
+    # 버튼 입력 위젯
+    clicked = st.button('등록')
 
-    #name = st.session_state['name']
-    name = user_input
-    st.session_state['registered'].append(name)
-    st.write('등록 이름 리스트 : ', st.session_state['registered'])
+    if clicked:
+        st.session_state['count'] = st.session_state['count'] + 1
+        st.write('버튼 클릭 : ', st.session_state['count'])
 
-# 콜백(callback) : 특정 함수를 다른 함수의 인자로 전달하고, 이후에 미리 정해진 조건을 충족하거나
-#                 이벤트가 발생했을 때 해당 함수를 호출하는 패턴.
-#                : 이 때 전달하는 특정함수를 콜백함수
+        #name = st.session_state['name']
+        name = user_input
+        st.session_state['registered'].append(name)
+        st.write('등록 이름 리스트 : ', st.session_state['registered'])
 
-st.header('callback', divider='rainbow')
+    # 콜백(callback) : 특정 함수를 다른 함수의 인자로 전달하고, 이후에 미리 정해진 조건을 충족하거나
+    #                 이벤트가 발생했을 때 해당 함수를 호출하는 패턴.
+    #                : 이 때 전달하는 특정함수를 콜백함수
 
-if 'lang' not in st.session_state:
-    st.session_state['lang'] = '영어'
+    st.header('callback', divider='rainbow')
 
-# 콜백 함수
-def btn_callback(lang):
-    st.session_state['lang'] = lang
+    if 'lang' not in st.session_state:
+        st.session_state['lang'] = '영어'
 
-# 라디오 버튼
-radio_options = ['영어', '스페인어', '일본어']
-radion_selected = st.radio('한국어를 어떤 언어로 번역하겠습니까?', radio_options)
+    # 콜백 함수
+    def btn_callback(lang):
+        st.session_state['lang'] = lang
 
-# 버튼 위젯 (이벤트가 일어날 위젯), args에 콜백 함수 인수 지정
-cliked = st.button('선택', on_click=btn_callback, args=[radion_selected])
+    # 라디오 버튼
+    radio_options = ['영어', '스페인어', '일본어']
+    radion_selected = st.radio('한국어를 어떤 언어로 번역하겠습니까?', radio_options)
 
-# 콜백 함수를 호출한 결과 출력
-st.write(f"한국어를 {st.session_state['lang']} 으로 번역하도록 선택했음.")
+    # 버튼 위젯 (이벤트가 일어날 위젯), args에 콜백 함수 인수 지정
+    cliked = st.button('선택', on_click=btn_callback, args=[radion_selected])
+
+    # 콜백 함수를 호출한 결과 출력
+    st.write(f"한국어를 {st.session_state['lang']} 으로 번역하도록 선택했음.")
 
 
 

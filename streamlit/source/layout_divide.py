@@ -11,7 +11,6 @@ from PIL import Image
 
 
 def run():
-
     st.subheader('1) 2개의 컬럼으로 분할 :blue[-너비는 같게]')
     [col1, col2] = st.columns(2)
     with col1:

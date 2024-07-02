@@ -34,6 +34,7 @@
 import streamlit as st
 import pandas as pd
 
+
 st.title("영화 관리 시스템")
 st.divider()
 st.header("영화 목록")
