@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template.html</title>
+    <style type="text/css">
+        .container {
+            max-width : 500px;
+            padding-top : 100px;
+            border : solid 1px red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>문자열 데이터 : {{ my_string }}</p>
+        <p>리스트 데이터 특정 항목 : {{ my_list[4] }}</p>
+        <p>리스트 데이터 전체 항목 출력</p>
+        <ul>
+            {% for i in my_list %}
+            <li>{{ i }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
