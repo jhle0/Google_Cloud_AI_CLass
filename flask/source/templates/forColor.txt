@@ -1,0 +1,3 @@
+{% for color in rainbow %}
+    {{ color }}
+{% endfor %}

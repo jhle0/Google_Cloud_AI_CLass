@@ -1,0 +1,5 @@
+{% if boolean %}
+참 입니다.
+{% else %}
+거짓 입니다.
+{% endif %}

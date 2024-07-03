@@ -1,0 +1,1 @@
+{{ data.name }}는 급여가 {{ data.salary }}냥 입니다.
