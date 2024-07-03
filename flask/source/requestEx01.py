@@ -24,7 +24,7 @@ def getRequest2():
     result = numValue + 200
     return str(result)
 
-
+    # request 에 있는 args 는 GET 방식만 접근 가능하다
 
 
 
