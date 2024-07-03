@@ -46,6 +46,20 @@ print('-'*40)
 
 
 
+# include 형식 - HTML 에서 많이 사용
+# header.html => base.html
+template6 = env.get_template('base.html')
+print(template6.render(title='base.html'))
+print('-'*40)
+
+
+
+
+# header.html => base.html => child.html
+template7 = env.get_template('child.html')
+print(template7.render(title='jinja2 연습', body='자식의 코드'))
+print('-'*40)
+
 
 
 
