@@ -1,0 +1,8 @@
+{% extends "layout_01.html" %}
+{% block content %}
+<li>{{ user.name }} - {{ user.email }} - <a href="사용자정보를 수정해주는 페이지 (특정 사용자 ID 가지고)">EDIT</a> </li>
+
+<!--        사용자 정보를 삭제하는 페이지 이동 - 특정 사용자 ID를 가지고 이동-->
+<button type="submit">Delete</button>
+
+{% endblock content %}

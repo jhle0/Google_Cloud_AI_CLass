@@ -1,4 +1,10 @@
+# 실습문제
 + Flask - 간단한 user 관리 기능 (CRUD)
++ 실행파일 - rendering.py
+-> super.html  -> layout.html (super)  <- nav.html
+                  (상속)                    (삽입)
+
+
 <요구사항>
 1. 사용자 목록 조회 : 모든 사용자를 조회해서 리스트로 출력
 2. 사용자 추가       : 새로운 사용자를 리스트에 추가 
