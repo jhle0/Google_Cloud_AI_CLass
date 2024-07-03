@@ -1,0 +1,24 @@
+<!--super block : super를 호출하여 부모 블록의 내용을 랜더링한 블록-->
+<!--            : 부모블록의 결과가 호출되는 블록-->
+
+
+
+{% extends "layout_init.html" %}
+{% block content %}
+    <h4>자식 템플릿 시작</h4>
+    <br>
+    <p>String : {{ my_string }}</p>
+    <p>리스트 2번째 요소 값 : {{ my_list[2] }}</p>
+    <p>전체 리스트 요소</p>
+    <ul>
+        {% for i in my_list %}
+        <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+    <h4>자식 템플릭 끝</h4>
+{% endblock content %}
+
+
+
+
+
