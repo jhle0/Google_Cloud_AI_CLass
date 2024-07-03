@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Index - User List</title>
+</head>
+<body>
+    <h1>User Lists</h1>
+    <a href="add_user.html"><button>Add User</button></a>
+    <ul>
+        {% for user in users %}
+        <li>{{ user.name }} - {{ user.email }} - <a href="사용자정보를 수정해주는 페이지 (특정 사용자 ID 가지고)">EDIT</a> </li>
+
+<!--        사용자 정보를 삭제하는 페이지 이동 - 특정 사용자 ID를 가지고 이동-->
+        <button type="submit">Delete</button>
+
+        {% endfor %}
+    </ul>
+</body>
+</html>
