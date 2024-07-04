@@ -1,0 +1,17 @@
++ register.html / myform.css
+
+> templates - register.html
+> static > css > myform.css
+
+register.html
+<head>
+	<link rel='stylesheet' href="{{ url_for('static', filename='css/myform.css') }}"
+</head>
+
+> flaskRegisterEx.py
+ 1. url : /register
+ 2. GET : register.html
+ 3. POST : 사용자가 입력한 데이터를 받아서 console에 ID만 출력해보세요.
+             + ID 정보를 cookie에 등록해보세요
+ ------------------------------------------------------------------------------------------------
+ 4. Swagger API 문서화 (도전)
