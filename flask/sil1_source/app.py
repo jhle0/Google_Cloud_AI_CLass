@@ -60,11 +60,6 @@ class UserList(Resource):
 
 
 
-
-
-
-
-
 # 사용자 추가
 @app.route('/add', methods=['GET', 'POST'])
 def add_user():
@@ -78,6 +73,7 @@ def add_user():
         USER_DB.append(new_user)
         return redirect(url_for('index'))
     return render_template('add_user.html')     # GET 일 때
+
 
 
 
@@ -98,12 +94,47 @@ def edit_user(user_id):
 
 
 
+
 # 사용자 삭제
 @app.route('/delete/<int:user_id>', methods=['POST'])
 def delete_user(user_id):
     global USER_DB
     USER_DB = [user for user in USER_DB if user['id'] != user_id]
     return redirect(url_for('index'))
+
+
+@ns.route('/<int:id>')
+@ns.response(404, 'User not found')
+@ns.param('id', 'A user identifier')
+class User(Resource):
+    @ns.doc('get_one_user')
+    @ns.marshal_with(user_model)
+    def get(self, id):           # 실제 코드 작성
+        user = next((u for u in USER_DB if u['id'] == id), None)
+        if user is None:
+            api.abort(404, 'User not found')
+        return user
+
+    @ns.doc('Update_user')
+    @ns.expect(user_model, validate=True)
+    @ns.marshal_with(user_model)
+    def put(self, id):
+        user = next((u for u in USER_DB if u['id'] == id), None)
+        if user is None:
+            api.abort(404, 'User not found')
+        data = api.payload
+        user.update(data)
+        return user
+
+    @ns.doc('delete_user')
+    @ns.response(204, 'User deleted')
+    def delete(self, id):
+        global USER_DB
+        USER_DB = [u for u in USER_DB if u['id'] != id]
+        return '', 204
+
+
+
 
 
 api.add_namespace(ns)
