@@ -4,7 +4,7 @@
     <option name="pathToExecutable" value="$USER_HOME$/opt/anaconda3/bin/black" />
     <option name="sdkName" value="Python 3.10 (Streamlit_workspace)" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="Python 3.10 (Streamlit_workspace)" project-jdk-type="Python SDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="Python 3.10 (Google_Cloud_AI_Class)" project-jdk-type="Python SDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

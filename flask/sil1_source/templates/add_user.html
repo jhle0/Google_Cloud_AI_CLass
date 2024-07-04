@@ -1,16 +1,26 @@
 <!doctype html>
 <html lang="kr">
-<head>
-    <meta charset="UTF-8">
-    <title>add_user</title>
-</head>
-<body>
-<form action="{{ url_for('add_user') }}" method="post">
-    이름 : <input type="text" name="userName"><br>
-    이메일주소 : <input type="text" name="userEmail"><br>
-    <input type="submit" value="전송">
-</form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>ADD USER</title>
+    </head>
+    <body>
+        <h1>ADD USER</h1>
+        <div class="container">
+            <form action="{{ url_for('add_user') }}" method="post">
+                <label for="name">Name : </label>
+                <input type="text" name="userName", id="name", required><br>
+
+                <label for="email">Email : </label>
+                <input type="text" name="userEmail", id="email", required><br>
+
+                <button type="submit" value="전송">Add</button>
+            </form>
+        </div>
+        <div>
+            <a href="{{ url_for('index') }}">Back to User Lists</a>
+        </div>
+    </body>
 </html>
 
 
