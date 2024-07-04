@@ -25,7 +25,9 @@ USER_DB = [
 
 # API 모델 정의
 user_model = api.model('User', {
-
+    'id': fields.Integer(readonly=True, descirption='User Identifier'),
+    'name': fields.String(required=True, description='User name'),
+    'email': fields.String(required=True, description='User email'),
 })
 
 
@@ -33,6 +35,33 @@ user_model = api.model('User', {
 @app.route('/')
 def index():
     return render_template('index.html', users=USER_DB)
+
+
+
+# API
+@ns.route('/')
+class UserList(Resource):
+    @ns.doc('user_lists')
+    @ns.marshal_list_with(user_model)
+    def get(self):
+        return USER_DB
+
+    @ns.doc('user_create')
+    @ns.expect(user_model, validate=True)
+    @ns.marshal_with(user_model, code=201)
+    def post(self):
+        new_id = max(user['id'] for user in USER_DB) + 1
+        new_user = api.payload
+        new_user['id'] = new_id
+        USER_DB.append(new_user)
+        return new_user, 201
+
+
+
+
+
+
+
 
 
 
@@ -75,6 +104,9 @@ def delete_user(user_id):
     global USER_DB
     USER_DB = [user for user in USER_DB if user['id'] != user_id]
     return redirect(url_for('index'))
+
+
+api.add_namespace(ns)
 
 
 
