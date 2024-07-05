@@ -15,3 +15,19 @@ register.html
              + ID 정보를 cookie에 등록해보세요
  ------------------------------------------------------------------------------------------------
  4. Swagger API 문서화 (도전)
+
+
+
+
+ userid
+ pwd1
+ pwd2
+ level
+ fullname
+ email
+ tel
+ skill
+
+
+
+
